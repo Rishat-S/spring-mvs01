@@ -29,25 +29,28 @@ public class FirstController {
                              @RequestParam(value = "b", required = false) Integer b,
                              @RequestParam(value = "action", required = false) String action,
                              Model model) {
+        double result = 0;
 
         switch (action) {
             case "multiplication": {
-                model.addAttribute("massage", a * b);
+                result = a * b;
                 break;
             }
             case "addition": {
-                model.addAttribute("massage",a + b);
+                result = a + b;
                 break;
             }
             case "subtraction": {
-                model.addAttribute("massage",a % b);
+                result = a - b;
                 break;
             }
             case "division": {
-                model.addAttribute("massage",a / b);
+                result = a / (double) b;
                 break;
             }
         }
+
+        model.addAttribute("result", result);
 
         return "first/calculator";
     }
