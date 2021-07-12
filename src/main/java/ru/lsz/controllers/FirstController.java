@@ -23,4 +23,32 @@ public class FirstController {
     public String goodBay() {
         return "first/goodbye";
     }
+
+    @GetMapping("/calculator")
+    public String calculator(@RequestParam(value = "a", required = false) Integer a,
+                             @RequestParam(value = "b", required = false) Integer b,
+                             @RequestParam(value = "action", required = false) String action,
+                             Model model) {
+
+        switch (action) {
+            case "multiplication": {
+                model.addAttribute("massage", a * b);
+                break;
+            }
+            case "addition": {
+                model.addAttribute("massage",a + b);
+                break;
+            }
+            case "subtraction": {
+                model.addAttribute("massage",a % b);
+                break;
+            }
+            case "division": {
+                model.addAttribute("massage",a / b);
+                break;
+            }
+        }
+
+        return "first/calculator";
+    }
 }
